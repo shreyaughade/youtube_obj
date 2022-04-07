@@ -51,19 +51,23 @@ def detectObjects(img_path):
 
   outputs={}
 
+  l=[]
   if len(detectionNMS)>0:
     outputs['detections']={}
-    outputs['detections']['labels']=[]
+    # outputs['detections']['labels']=[]
     for i in detectionNMS.flatten():
       detection={}
       detection['Label']=labels[classIDs[i]]
-      detection['confidence']=confidences[i]
-      detection['X']=boxes[i][0]
-      detection['Y']=boxes[i][1]
-      detection['Width']=boxes[i][2]
-      detection['Height']=boxes[i][3]
-      outputs['detections']['labels'].append(detection)
+      l.append(detection['Label'])
+      # detection['confidence']=confidences[i]
+      # detection['X']=boxes[i][0]
+      # detection['Y']=boxes[i][1]
+      # detection['Width']=boxes[i][2]
+      # detection['Height']=boxes[i][3]
+      # outputs['detections']['labels'].append(detection)
   else:
     outputs['detections']='No Objects'
+
+  outputs['detections']=l
 
   return outputs
